@@ -1,0 +1,34 @@
+.containerOptions{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 10rem;
+    margin: auto;
+}
+
+.containerOptions div{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    cursor: pointer;
+    border: solid rgb(243, 243, 243);
+    border-radius: 100%;
+    border-width: thin;
+    width: 4rem;
+    height: 4rem;
+    transition: 0.3s;
+}
+
+.containerOptions div:hover{
+    transform: scale(1.1);
+}
+
+.containerOptions div:active{
+    transform: scale(1.1);
+    border-width: medium;
+}
+
+.containerOptions div img{
+    width: 3rem;
+    margin: 0.2rem auto auto 0.5rem;
+}

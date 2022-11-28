@@ -1,0 +1,14 @@
+:root {
+    --color-black: #222;
+    --color-red: #db0000;
+    --color-gray: #564d4d;
+    --color-red-shadow: #831010;
+    --color-gray-clear: #fff;
+    --color-gray-soft:  #564d4d;
+    --color-orange: #f3ab1b;
+    --color-input-active: #E8F0FE;
+    --color-input-bg: rgba(51, 51, 51, 0.79);
+    --color-swalert-bg: rgba(51, 51, 51, 0.937);
+    --posLeft: 0px;
+    --posTop: -100px;
+}

@@ -8,10 +8,7 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class ECommerceApplication {
-	//@PostConstruct
-	//public void init(){
-		//TimeZone.setDefault(TimeZone.getTimeZone("UTC-03:00"));
-	//}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceApplication.class, args);

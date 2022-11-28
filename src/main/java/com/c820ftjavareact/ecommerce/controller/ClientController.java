@@ -20,8 +20,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-
-
     @GetMapping(value = "/clients")
     public ResponseEntity<List<ClientDTORegister>> getClient(){
         List<ClientDTORegister> clientDTORegisters = clientService.getClientListRegisters();
@@ -39,7 +37,7 @@ public class ClientController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<ClientDTORegister> create(@RequestBody ClientDTORegister clientDTORegister){
         clientService.createClient(clientDTORegister);
         return status(HttpStatus.CREATED).body(clientDTORegister);

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
         productService.createProduct(productDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(productDTO);
@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     //listar product
-    @GetMapping()
+    @GetMapping("/products")
     public ResponseEntity<List<ProductBasicDTO>> getProduct() {
         List<ProductBasicDTO> productBasicDTOS = productService.getProduct();
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(productBasicDTOS);

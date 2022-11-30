@@ -74,4 +74,7 @@ public class ClientServiceImp implements ClientService {
         Client clientSave = clientRepository.save(client);
         return clientMapper.clientEntityDTOBasic(clientSave);
     }
+
+
+
 }

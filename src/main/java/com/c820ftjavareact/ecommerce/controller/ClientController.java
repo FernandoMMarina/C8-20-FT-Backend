@@ -5,6 +5,7 @@ import com.c820ftjavareact.ecommerce.dto.ClientDTORegister;
 import com.c820ftjavareact.ecommerce.repository.ClientRepository;
 import com.c820ftjavareact.ecommerce.service.ClientService;
 import io.swagger.v3.oas.annotations.Parameter;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/client")
+@AllArgsConstructor
 public class ClientController {
     @Autowired
     private ClientService clientService;

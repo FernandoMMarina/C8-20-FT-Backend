@@ -4,6 +4,7 @@ import com.c820ftjavareact.ecommerce.dto.ProductDTO;
 import com.c820ftjavareact.ecommerce.service.ProductService;
 import javassist.NotFoundException;
 import javassist.NotFoundException;
+import lombok.AllArgsConstructor;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@AllArgsConstructor
 public class ProductController {
 
     @Autowired

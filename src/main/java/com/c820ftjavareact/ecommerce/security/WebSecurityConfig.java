@@ -3,6 +3,7 @@ package com.c820ftjavareact.ecommerce.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,12 +30,16 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return http
-                .csrf().disable()
+                .csrf().disable().cors().disable()
                 .authorizeRequests()
+                .antMatchers("/product/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/product/products").permitAll()
+                .antMatchers(HttpMethod.GET,"/product/{id}").permitAll()
+                .antMatchers(HttpMethod.POST,"/product/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/product/{id}").permitAll()
+                .antMatchers(HttpMethod.PUT,"/product/{id}").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .httpBasic()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -70,7 +75,5 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    public static void main(String[]args){
-        System.out.println("pass: " + new BCryptPasswordEncoder().encode("1234"));
-    }
+
 }

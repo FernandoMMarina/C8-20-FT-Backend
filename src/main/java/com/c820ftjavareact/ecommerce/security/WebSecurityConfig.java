@@ -22,6 +22,10 @@ public class WebSecurityConfig {
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
 
 
+    private static final String ROLE_ADMIN = "ADMIN";
+    private static final String ROLE_USER = "USER";
+
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
 
@@ -32,12 +36,20 @@ public class WebSecurityConfig {
         return http
                 .csrf().disable().cors().disable()
                 .authorizeRequests()
+                //Products
                 .antMatchers("/product/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/product/products").permitAll()
                 .antMatchers(HttpMethod.GET,"/product/{id}").permitAll()
                 .antMatchers(HttpMethod.POST,"/product/").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/product/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/product/{id}").permitAll()
+                //Products
+                .antMatchers(HttpMethod.GET,"/client/clients").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.GET,"/client/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.POST,"/client/").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
+
                 .anyRequest()
                 .authenticated()
                 .and()

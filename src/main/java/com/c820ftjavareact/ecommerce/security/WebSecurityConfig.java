@@ -43,12 +43,14 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST,"/product/").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/product/{id}").permitAll()
                 .antMatchers(HttpMethod.PUT,"/product/{id}").permitAll()
+                .antMatchers(HttpMethod.POST,"/productC/upload").permitAll()
                 //Products
                 .antMatchers(HttpMethod.GET,"/client/clients").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST,"/client/").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.POST,"/product/upload").permitAll()
 
                 .anyRequest()
                 .authenticated()

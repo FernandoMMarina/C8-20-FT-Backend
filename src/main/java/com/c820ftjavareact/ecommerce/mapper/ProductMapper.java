@@ -48,6 +48,7 @@ public class ProductMapper {
         productBasicDTO.setImageUrl(product.getImageUrl());
         productBasicDTO.setTitle(product.getTitle());
         productBasicDTO.setPrice(product.getPrice());
+        productBasicDTO.setDescription(product.getDescription());
         return productBasicDTO;
     }
 

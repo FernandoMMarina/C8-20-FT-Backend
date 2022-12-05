@@ -41,7 +41,7 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return http
-                .csrf().disable().cors().and()
+                .csrf().disable().cors(cors -> cors.disable())
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()
@@ -95,6 +95,7 @@ public class WebSecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+    
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

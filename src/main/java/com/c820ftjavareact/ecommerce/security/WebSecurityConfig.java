@@ -34,7 +34,7 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return http
-                .csrf().disable().cors().disable()
+                .csrf().disable().cors().and()
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()

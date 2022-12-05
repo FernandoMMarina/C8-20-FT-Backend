@@ -2,8 +2,10 @@ package com.c820ftjavareact.ecommerce.service.implement;
 
 import com.c820ftjavareact.ecommerce.dto.ClientDTORegister;
 import com.c820ftjavareact.ecommerce.entity.Client;
+import com.c820ftjavareact.ecommerce.entity.Role;
 import com.c820ftjavareact.ecommerce.mapper.ClientMapper;
 import com.c820ftjavareact.ecommerce.repository.ClientRepository;
+import com.c820ftjavareact.ecommerce.repository.RoleRepository;
 import com.c820ftjavareact.ecommerce.service.ClientService;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
@@ -19,8 +21,12 @@ public class ClientServiceImp implements ClientService {
     @Autowired
     private ClientMapper clientMapper;
 
+
+
     @Autowired
     private ClientRepository clientRepository;
+
+
 
     @Override
     public List<ClientDTORegister> getClientListRegisters(){

@@ -1,6 +1,5 @@
 package com.c820ftjavareact.ecommerce.dto;
 
-import com.c820ftjavareact.ecommerce.entity.Role;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +28,5 @@ public class ClientDTORegister {
 
     @NotNull
     private String address;
-
-    private Role role;
 
 }

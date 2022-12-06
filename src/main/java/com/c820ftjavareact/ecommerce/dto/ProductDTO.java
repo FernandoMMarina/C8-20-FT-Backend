@@ -10,6 +10,9 @@ import lombok.Setter;
 public class ProductDTO {
 
     @NotNull
+    private long id;
+
+    @NotNull
     private String title;
 
     @NotNull

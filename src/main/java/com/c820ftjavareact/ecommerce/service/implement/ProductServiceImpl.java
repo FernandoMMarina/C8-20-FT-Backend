@@ -38,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO updateProduct(ProductDTO productDTO,Long id) {
         Product product = productRepository.findById(id).orElse(null);
         assert product != null;
+        product.setId(productDTO.getId());
         product.setTitle(productDTO.getTitle());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());

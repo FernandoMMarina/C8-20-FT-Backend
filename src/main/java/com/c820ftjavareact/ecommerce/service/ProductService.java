@@ -1,4 +1,5 @@
 package com.c820ftjavareact.ecommerce.service;
+import com.c820ftjavareact.ecommerce.dto.ClientDTORegister;
 import com.c820ftjavareact.ecommerce.dto.ProductBasicDTO;
 import javassist.NotFoundException;
 import com.c820ftjavareact.ecommerce.dto.ProductDTO;

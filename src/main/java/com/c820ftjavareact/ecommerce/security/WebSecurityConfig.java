@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,6 +20,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 @Configuration
@@ -32,6 +34,8 @@ public class WebSecurityConfig {
     private static final String ROLE_ADMIN = "ADMIN";
     private static final String ROLE_USER = "USER";
 
+
+
     @CrossOrigin(origins = "http://localhost:3000")
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
@@ -41,7 +45,8 @@ public class WebSecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return http
-                .csrf().disable().cors(cors -> cors.disable())
+                .csrf().disable()
+                .cors(Customizer.withDefaults())
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()
@@ -57,6 +62,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST,"/client/").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
 
 
                 .anyRequest()
@@ -95,16 +101,17 @@ public class WebSecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        configuration.setAllowedMethods(Arrays.asList("GET"));
+
+        configuration.setAllowedHeaders(List.of("Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
 }

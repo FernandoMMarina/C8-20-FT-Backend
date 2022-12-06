@@ -7,6 +7,9 @@ import lombok.Setter;
 public class ProductBasicDTO {
 
     @NotNull
+    private long id;
+
+    @NotNull
     private String imageUrl;
     @NotNull
     private String title;

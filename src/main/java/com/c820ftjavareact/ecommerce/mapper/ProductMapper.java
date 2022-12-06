@@ -11,7 +11,9 @@ import java.util.List;
 @Component
 public class ProductMapper {
     public Product productDTO2Entity (ProductDTO productDTO){
+
         Product product = new Product();
+        product.setId(product.getId());
         product.setTitle(productDTO.getTitle());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
@@ -23,6 +25,7 @@ public class ProductMapper {
 
     public ProductDTO productEntity2DTO (Product  product){
         ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(productDTO.getId());
         productDTO.setTitle(product.getTitle());
         productDTO.setDescription(product.getDescription());
         productDTO.setPrice(product.getPrice());
@@ -45,6 +48,7 @@ public class ProductMapper {
 
     public ProductBasicDTO productEntity2DTOBasic(Product product) {
         ProductBasicDTO productBasicDTO = new ProductBasicDTO();
+        productBasicDTO.setId(product.getId());
         productBasicDTO.setImageUrl(product.getImageUrl());
         productBasicDTO.setTitle(product.getTitle());
         productBasicDTO.setPrice(product.getPrice());

@@ -32,4 +32,5 @@ public class Product {
 
     private String note;
 
+    private Long stock;
 }

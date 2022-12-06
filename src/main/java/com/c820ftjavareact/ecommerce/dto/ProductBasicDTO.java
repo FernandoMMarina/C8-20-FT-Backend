@@ -8,7 +8,6 @@ public class ProductBasicDTO {
 
     @NotNull
     private long id;
-
     @NotNull
     private String imageUrl;
     @NotNull
@@ -18,5 +17,7 @@ public class ProductBasicDTO {
     @NotNull
     private double price;
 
+    @NotNull
+    private long stock;
 
 }

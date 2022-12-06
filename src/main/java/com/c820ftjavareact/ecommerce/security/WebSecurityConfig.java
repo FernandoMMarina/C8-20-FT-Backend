@@ -1,13 +1,16 @@
 package com.c820ftjavareact.ecommerce.security;
 
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,31 +25,31 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 
 @Configuration
+@EnableWebSecurity
 @AllArgsConstructor
 public class WebSecurityConfig {
+
 
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
 
-
     private static final String ROLE_ADMIN = "ADMIN";
     private static final String ROLE_USER = "USER";
-
-
 
     @CrossOrigin(origins = "http://localhost:3000")
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
-
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return http
                 .csrf().disable()
-                .cors(Customizer.withDefaults())
+                .cors(withDefaults())
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()
@@ -59,15 +62,22 @@ public class WebSecurityConfig {
                 //Clients
                 .antMatchers(HttpMethod.GET,"/client/clients").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.GET,"/client/{id}").hasRole(ROLE_ADMIN)
-                .antMatchers(HttpMethod.POST,"/client/").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.POST,"/client/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
 
-
                 .anyRequest()
                 .authenticated()
                 .and()
+                .formLogin(loginConfigurer -> {
+                    loginConfigurer
+                            .loginProcessingUrl("/login")
+                            .loginPage("/").permitAll()
+                            .successForwardUrl("/")
+                            .defaultSuccessUrl("/")
+                            .failureUrl("/?error");
+                })
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -76,6 +86,21 @@ public class WebSecurityConfig {
                 .build();
 
     };
+    @Bean
+    @CrossOrigin(origins = "https://localhost:3000")
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization","*"));
+
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+
 
     /*
     @Bean
@@ -89,6 +114,7 @@ public class WebSecurityConfig {
     }*/
 
     @Bean
+    @CrossOrigin(origins = "https://localhost:3000")
     AuthenticationManager authManager(HttpSecurity http ) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)
@@ -102,16 +128,6 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET"));
 
-        configuration.setAllowedHeaders(List.of("Authorization"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
 
 }

@@ -100,7 +100,8 @@ public class WebSecurityConfig {
                 "https://c8-20-ft-javareact.vercel.app/",
                 "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login"
                 ,"https://c8-20-ft-javareact.vercel.app/login",
-                "http://localhost:3000"));
+                "http://localhost:3000",
+                "http://localhost:3000/login"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD","PUT","DELETE"));
         configuration.setAllowedHeaders(List.of("Access-Control-Allow-Origin : Authorization","*"));
         configuration.setAllowedMethods(List.of("Access-Control-Allow-Methods :","GET,HEAD,OPTIONS,POST,PUT,DELETE"));

@@ -102,8 +102,8 @@ public class WebSecurityConfig {
                 ,"https://c8-20-ft-javareact.vercel.app/login",
                 "http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD"));
-        configuration.setAllowedHeaders(List.of("Authorization","Access-Control-Allow-Origin",""));
-        configuration.setAllowedMethods(List.of("Access-Control-Allow-Methods","GET,HEAD,OPTIONS,POST,PUT"));
+        configuration.setAllowedHeaders(List.of("Access-Control-Allow-Headers : Authorization","*"));
+        configuration.setAllowedMethods(List.of("Access-Control-Allow-Methods","GET,HEAD,OPTIONS,POST,PUT,DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

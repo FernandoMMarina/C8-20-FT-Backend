@@ -50,8 +50,7 @@ public class WebSecurityConfig {
 
         return http
                 .csrf().disable()
-                .cors().configurationSource(corsConfigurationSource())
-                .and()
+                .cors(cors -> cors.disable())
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()
@@ -89,7 +88,6 @@ public class WebSecurityConfig {
     };
     @Bean
     @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
-
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/","https://c8-20-ft-javareact-dgfyw77kn-villanos.vercel.app/",
@@ -105,6 +103,7 @@ public class WebSecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD","PUT","DELETE"));
         configuration.setAllowedHeaders(List.of("Access-Control-Allow-Origin : Authorization","*"));
         configuration.setAllowedMethods(List.of("Access-Control-Allow-Methods :","GET,HEAD,OPTIONS,POST,PUT,DELETE"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

@@ -26,4 +26,6 @@ public class ProductDTO {
     private String note;
     private Long stock;
 
+    private String categoria;
+
 }

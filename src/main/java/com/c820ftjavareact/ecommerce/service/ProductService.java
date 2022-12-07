@@ -13,7 +13,11 @@ public interface ProductService {
     void deleteProduct(Long id) throws NotFoundException;
 
     List<ProductBasicDTO> getProduct();
+
+   
     ProductDTO getProductById(Long id);
+
+
 
     //CategoryDTO getCategoryById(String id);
     // List<CategoryBasicDTO> getCategory();

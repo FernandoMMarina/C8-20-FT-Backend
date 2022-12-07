@@ -21,6 +21,6 @@ public class ProductBasicDTO {
     private long stock;
 
     @NotNull
-    private String categoria;
+    private String category;
 
 }

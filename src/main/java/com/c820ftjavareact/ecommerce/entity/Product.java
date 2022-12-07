@@ -36,5 +36,5 @@ public class Product {
     private Long stock;
 
     @NotNull
-    private String categoria;
+    private String category;
 }

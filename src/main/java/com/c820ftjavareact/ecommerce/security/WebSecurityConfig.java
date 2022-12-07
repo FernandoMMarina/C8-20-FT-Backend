@@ -67,7 +67,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST,"/client/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
-                //.antMatchers(HttpMethod.POST,"/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
 
                 .anyRequest()
                 .authenticated()
@@ -89,17 +89,20 @@ public class WebSecurityConfig {
     };
     @Bean
     @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
+
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(
+        configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/","https://c8-20-ft-javareact-dgfyw77kn-villanos.vercel.app/",
+                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/",
+                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/",
+                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login",
+                "https://c8-20-ft-javareact-gldu44ase-villanos.vercel.app/",
                 "https://c8-20-ft-javareact.vercel.app/",
-                "https://c8-20-ft-javareact.vercel.app/login",
-                "http://localhost:3000",
-                "http://localhost:3000/login"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD","PUT","DELETE"));
-        configuration.setAllowedHeaders(List.of("Access-Control-Allow-Origin : Authorization","*"));
-        configuration.setAllowedMethods(List.of("Access-Control-Allow-Methods :","GET,HEAD,OPTIONS,POST,PUT,DELETE"));
-
+                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login"
+                ,"https://c8-20-ft-javareact.vercel.app/login",
+                "http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD"));
+        configuration.setAllowedHeaders(List.of("Authorization","Access-Control-Allow-Origin","*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

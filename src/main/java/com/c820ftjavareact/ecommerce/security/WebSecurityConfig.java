@@ -93,7 +93,7 @@ public class WebSecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/","https://c8-20-ft-javareact-dgfyw77kn-villanos.vercel.app/",
-                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/","https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/","https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login","http://localhost:3000"));
+                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/","https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/","https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login","https://c8-20-ft-javareact-gldu44ase-villanos.vercel.app/","http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization","Access-Control-Allow-Origin","*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

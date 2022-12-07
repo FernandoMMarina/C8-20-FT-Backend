@@ -12,9 +12,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +41,8 @@ public class WebSecurityConfig {
 
     private static final String ROLE_ADMIN = "ADMIN";
     private static final String ROLE_USER = "USER";
+
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @Bean
@@ -100,19 +104,18 @@ public class WebSecurityConfig {
         return source;
     }
 
+/*
 
-
-    /*
     @Bean
     UserDetailsService userDetailsService(){
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("admin")
                 .password(passwordEncoder().encode("admin"))
-                .roles()
+                .roles(ROLE_ADMIN)
                 .build());
         return manager;
-    }*/
-
+    }
+*/
     @Bean
     @CrossOrigin(origins = "https://localhost:3000")
     AuthenticationManager authManager(HttpSecurity http ) throws Exception {

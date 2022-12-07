@@ -16,6 +16,7 @@ import static org.springframework.http.ResponseEntity.status;
 
 @RestController
 @RequestMapping("/client")
+@CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
 public class ClientController {
     @Autowired
     private ClientService clientService;

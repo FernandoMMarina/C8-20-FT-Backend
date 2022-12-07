@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/product")
 @AllArgsConstructor
+@CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
 public class ProductController {
 
     @Autowired

@@ -35,16 +35,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @AllArgsConstructor
 public class WebSecurityConfig {
 
-
     private final UserDetailsService userDetailsService;
     private final JWTAuthorizationFilter jwtAuthorizationFilter;
 
     private static final String ROLE_ADMIN = "ADMIN";
     private static final String ROLE_USER = "USER";
 
-
-
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
@@ -91,18 +88,19 @@ public class WebSecurityConfig {
 
     };
     @Bean
-    @CrossOrigin(origins = "https://localhost:3000")
+    @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization","*"));
-
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
+
 
 /*
 
@@ -117,7 +115,7 @@ public class WebSecurityConfig {
     }
 */
     @Bean
-    @CrossOrigin(origins = "https://localhost:3000")
+    @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
     AuthenticationManager authManager(HttpSecurity http ) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
                 .userDetailsService(userDetailsService)

@@ -86,17 +86,13 @@ public class WebSecurityConfig {
                 .addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     };
     @Bean
     @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
 
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/",
-                "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/product/products",
-                "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/client",
-                "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/login",
+        configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/","https://c8-20-ft-javareact-dgfyw77kn-villanos.vercel.app/",
                 "http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization","Access-Control-Allow-Origin","*"));
@@ -106,7 +102,6 @@ public class WebSecurityConfig {
     }
 
 /*
-
     @Bean
     UserDetailsService userDetailsService(){
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();

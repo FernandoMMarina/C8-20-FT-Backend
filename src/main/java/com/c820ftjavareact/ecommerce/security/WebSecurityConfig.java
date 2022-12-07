@@ -50,7 +50,8 @@ public class WebSecurityConfig {
 
         return http
                 .csrf().disable()
-                .cors(cors -> cors.disable())
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .authorizeRequests()
                 //Products
                 .antMatchers("/product/**").permitAll()
@@ -66,7 +67,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST,"/client/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/client/{id}").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.DELETE,"/client/{id}").hasRole(ROLE_ADMIN)
-                .antMatchers(HttpMethod.POST,"/login").permitAll()
+                //.antMatchers(HttpMethod.POST,"/login").permitAll()
 
                 .anyRequest()
                 .authenticated()

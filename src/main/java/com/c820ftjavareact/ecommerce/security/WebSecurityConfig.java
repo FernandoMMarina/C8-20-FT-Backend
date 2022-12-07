@@ -91,14 +91,9 @@ public class WebSecurityConfig {
     @CrossOrigin(origins = "https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/")
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://c8-20-ft-javareact-5a91pzs32-villanos.vercel.app/","https://c8-20-ft-javareact-dgfyw77kn-villanos.vercel.app/",
-                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/",
-                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/",
-                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login",
-                "https://c8-20-ft-javareact-gldu44ase-villanos.vercel.app/",
+        configuration.setAllowedOrigins(Arrays.asList(
                 "https://c8-20-ft-javareact.vercel.app/",
-                "https://c8-20-ft-javareact-k53zjt3xg-villanos.vercel.app/login"
-                ,"https://c8-20-ft-javareact.vercel.app/login",
+                "https://c8-20-ft-javareact.vercel.app/login",
                 "http://localhost:3000",
                 "http://localhost:3000/login"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","OPTIONS","HEAD","PUT","DELETE"));
